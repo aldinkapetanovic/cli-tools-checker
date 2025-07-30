@@ -1,0 +1,34 @@
+---
+- name: Check required tools in groups
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Start tool check summary
+      debug:
+        msg: "🔍 Checking CLI tools grouped by category..."
+
+    - name: Check tools in each group
+      block:
+        - name: "Checking tool group: {{ item.key }}"
+          block:
+            - name: Check each tool in {{ item.key }}
+              vars:
+                tool_group: "{{ item.value }}"
+              loop: "{{ tool_group }}"
+              loop_control:
+                loop_var: tool
+              block:
+                - name: Check if {{ tool }} is available
+                  command: "command -v {{ tool }}"
+                  register: tool_result
+                  ignore_errors: yes
+
+                - name: Print result for {{ tool }}
+                  debug:
+                    msg: >
+                      {{ '✅ ' + tool + ' is installed at ' + tool_result.stdout
+                         if tool_result.rc == 0
+                         else '❌ ' + tool + ' is NOT installed' }}
+          loop: "{{ tool_groups | dict2items }}"
+
