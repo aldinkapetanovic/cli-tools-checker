@@ -28,7 +28,7 @@ declare -A TOOL_GROUPS
 
 TOOL_GROUPS["🛠️ Core Dev & Ops Tools"]="git curl wget jq yq make"
 TOOL_GROUPS["☁️ IaC & Cloud CLI Tools"]="terraform ansible aws az gcloud"
-TOOL_GROUPS["🐳 Container & K8s Tools"]="docker docker-compose kubectl helm kind minikube"
+TOOL_GROUPS["🐳 Container & K8s Tools"]="docker kubectl helm kind minikube"
 TOOL_GROUPS["🔒 Security Tools"]="vault gpg trivy sops"
 TOOL_GROUPS["🧪 Testing & Linting"]="pre-commit shellcheck hadolint yamllint"
 TOOL_GROUPS["🔧 Developer Productivity"]="fzf bat htop tldr ncdu tree"
